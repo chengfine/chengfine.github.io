@@ -8,7 +8,7 @@
     "deploy:mac": "pnpm run docs:build && chmod +x ./bin/autoDeployMac.sh &&  ./bin/autoDeployMac.sh",
     "pullcode": "chmod +x ./bin/pullCode.sh &&  ./bin/pullCode.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },

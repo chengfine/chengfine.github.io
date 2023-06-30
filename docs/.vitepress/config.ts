@@ -29,6 +29,15 @@ export default defineConfig({
 					},
 				],
 			},
+			{
+				text: "ECMAScript 6",
+				items: [
+					{
+						text: "let 和 const 命令",
+						link: "/es6/let 和 const 命令"
+					}
+				]
+			}
 		],
 
 		socialLinks: [
