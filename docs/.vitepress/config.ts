@@ -34,7 +34,7 @@ export default defineConfig({
 				items: [
 					{
 						text: "let 和 const 命令",
-						link: "/es6/let 和 const 命令"
+						link: "/es6/let和const命令"
 					}
 				]
 			}
