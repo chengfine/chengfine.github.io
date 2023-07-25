@@ -9,7 +9,7 @@ cd docs/.vitepress/dist
 # 初始化 Git 仓库并提交生成的静态文件
 git init
 git add -A
-git commit -m "Deploy to GitHub Pages$(date +"%Y-%m-%d %H:%M:%S")"
+git commit -m "Deploy to GitHub Pages $(date +"%Y-%m-%d %H:%M:%S")"
 
 # 推送静态文件到 GitHub 个人博客仓库的 main 分支
 git push -f https://github.com/chengfine/chengfine.github.io.git main:gh-pages
