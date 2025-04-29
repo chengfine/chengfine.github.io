@@ -19,13 +19,13 @@ hero:
   actions:
     - theme: brand
       text: Blog
-      link: /blog/2025/1learn-nestjs-by-deepseek
-    - theme: alt
-      text: Photo
-      link: /photo/chuanxi
+      link: /blog/2025/3aaaaa
     - theme: alt
       text: Diary
-      link: /diary/20250427
+      link: /diary/20250429
+    - theme: alt
+      text: Photo
+      link: /photo/01chuanxi
 
 # features:
 #   - title: 博客

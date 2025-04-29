@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/',
   title: "CHENG的博客",
   description: "cheng-github-blog",
-  // cleanUrls: true,
+  cleanUrls: true,
   srcDir: "./src",
   // 是否显示更新时间
   // lastUpdated: true,

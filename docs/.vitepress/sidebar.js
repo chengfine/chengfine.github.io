@@ -9,32 +9,47 @@ function generateSidebar() {
     const items = [];
     const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
+    // 先收集所有文件
+    const files = [];
+    const dirs = [];
+
     for (const entry of entries) {
       const fullPath = path.join(dirPath, entry.name);
       const relativePath = path.join(basePath, entry.name);
 
       if (entry.isDirectory()) {
-        //  递归处理子目录
-        const subItems = processDirectory(fullPath, relativePath);
-        if (subItems.length > 0) {
-          items.push({
-            text: entry.name.charAt(0).toUpperCase() + entry.name.slice(1),
-            items: subItems
-          });
-        }
+        dirs.push(entry);
       } else if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'index.md') {
-        // 处理 markdown 文件
-        const content = fs.readFileSync(fullPath, 'utf8');
-        const titleMatch = content.match(/^#\s+(.+)$/m);
-        const title = titleMatch ? titleMatch[1] : entry.name.replace('.md', '');
+        files.push(entry);
+      }
+    }
 
-        // 获取相对于 src 目录的路径
-        const relativeToSrc = path.relative(srcPath, dirPath);
-        const fullLinkPath = path.join(relativeToSrc, entry.name.replace('.md', '')).replace(/\\/g, '/');
+    // 处理文件，按文件名倒序排序（假设文件名包含日期）
+    const sortedFiles = files.sort((a, b) => b.name.localeCompare(a.name));
+    
+    for (const entry of sortedFiles) {
+      const fullPath = path.join(dirPath, entry.name);
+      const content = fs.readFileSync(fullPath, 'utf8');
+      const titleMatch = content.match(/^#\s+(.+)$/m);
+      const title = titleMatch ? titleMatch[1] : entry.name.replace('.md', '');
 
+      const relativeToSrc = path.relative(srcPath, dirPath);
+      const fullLinkPath = path.join(relativeToSrc, entry.name.replace('.md', '')).replace(/\\/g, '/');
+
+      items.push({
+        text: title,
+        link: `/${fullLinkPath}`
+      });
+    }
+
+    // 处理目录
+    for (const entry of dirs) {
+      const fullPath = path.join(dirPath, entry.name);
+      const subItems = processDirectory(fullPath, path.join(basePath, entry.name));
+      if (subItems.length > 0) {
         items.push({
-          text: title,
-          link: `/${fullLinkPath}`
+          text: entry.name.charAt(0).toUpperCase() + entry.name.slice(1),
+          items: subItems
         });
       }
     }
@@ -58,7 +73,6 @@ function generateSidebar() {
           name: dirent.name,
           path: path.join(dirPath, dirent.name)
         }))
-        // 按年份降序排序（假设子目录名是年份）
         .sort((a, b) => b.name.localeCompare(a.name));
       
       const blogItems = [];
@@ -68,7 +82,7 @@ function generateSidebar() {
         if (yearItems.length > 0) {
           blogItems.push({
             text: subdir.name,
-            items: yearItems.reverse()
+            items: yearItems
           });
         }
       }
