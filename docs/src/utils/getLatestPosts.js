@@ -42,8 +42,8 @@ function getLatestFile(dirPath) {
  */
 export function getLatestPosts(basePath) {
   const blogPath = path.join(basePath, 'blog');
-  const diaryPath = path.join(basePath, 'diary');
-  const photoPath = path.join(basePath, 'photo');
+  const recordPath = path.join(basePath, 'record');
+  // const photoPath = path.join(basePath, 'photo');
 
   // 获取博客最新年份
   const blogYears = fs.readdirSync(blogPath);
@@ -53,7 +53,7 @@ export function getLatestPosts(basePath) {
 
   return {
     blog: latestBlog ? `/blog/${latestBlogYear}/${latestBlog.replace('.md', '')}` : '/blog/',
-    diary: `/diary/${getLatestFile(diaryPath)?.replace('.md', '') || ''}`,
-    photo: `/photo/${getLatestFile(photoPath)?.replace('.md', '') || ''}`
+    record: `/record/${getLatestFile(recordPath)?.replace('.md', '') || ''}`,
+    // photo: `/photo/${getLatestFile(photoPath)?.replace('.md', '') || ''}`
   };
 } 

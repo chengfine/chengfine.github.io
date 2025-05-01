@@ -23,8 +23,8 @@ export default () => {
         `link: ${latestPosts.blog}\n`
       );
       content = content.replace(
-        /link: \/diary\/.*?\n/g,
-        `link: ${latestPosts.diary}\n`
+        /link: \/record\/.*?\n/g,
+        `link: ${latestPosts.record}\n`
       );
       content = content.replace(
         /link: \/photo\/.*?\n/g,

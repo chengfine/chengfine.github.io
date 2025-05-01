@@ -37,7 +37,7 @@ function getLatestPost(category) {
     const latestPost = posts[0].replace('.md', '');
     return `/${category}/${latestYear}/${latestPost}`;
   } else {
-    // 处理其他目录（diary, photo 等）
+    // 处理其他目录（record, photo 等）
     const posts = entries
       .filter(dirent => dirent.isFile() && dirent.name.endsWith('.md'))
       .map(dirent => dirent.name)
@@ -52,19 +52,19 @@ function getLatestPost(category) {
 
 export const nav = [
   { 
-    text: '博客', 
+    text: 'Blog', 
     link: getLatestPost('blog'),
     activeMatch: '^/blog/'
   },
   { 
-    text: '日记', 
-    link: getLatestPost('diary'),
-    activeMatch: '^/diary/'
+    text: 'Record', 
+    link: getLatestPost('record'),
+    activeMatch: '^/record/'
   },
-  { 
-    text: '相册', 
-    link: getLatestPost('photo'),
-    activeMatch: '^/photo/'
-  }
+  // { 
+  //   text: '相册', 
+  //   link: getLatestPost('photo'),
+  //   activeMatch: '^/photo/'
+  // }
 ];
 

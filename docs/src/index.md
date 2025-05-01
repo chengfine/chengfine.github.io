@@ -21,11 +21,11 @@ hero:
       text: Blog
       link: /blog/2025/4测试一下
     - theme: alt
-      text: Diary
-      link: /diary/220250429
-    - theme: alt
-      text: Photo
-      link: /photo/3ceshi
+      text: Record
+      link: /record/3ceshi
+    # - theme: alt
+    #   text: Photo
+    #   link: undefined
 
 # features:
 #   - title: 博客
