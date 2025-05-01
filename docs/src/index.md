@@ -19,13 +19,13 @@ hero:
   actions:
     - theme: brand
       text: Blog
-      link: /blog/2025/3aaaaa
+      link: /blog/2025/4测试一下
     - theme: alt
       text: Diary
-      link: /diary/20250429
+      link: /diary/220250429
     - theme: alt
       text: Photo
-      link: /photo/01chuanxi
+      link: /photo/3ceshi
 
 # features:
 #   - title: 博客
