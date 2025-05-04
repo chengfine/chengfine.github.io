@@ -21,7 +21,7 @@ function getLatestFile(dirPath) {
       const stats = fs.statSync(filePath);
       return {
         path: file,
-        ctime: stats.ctime
+        ctime: stats.birthtime
       };
     });
 

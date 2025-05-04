@@ -14,8 +14,8 @@ function generateSidebar() {
     const dirs = [];
 
     for (const entry of entries) {
-      const fullPath = path.join(dirPath, entry.name);
-      const relativePath = path.join(basePath, entry.name);
+      // const fullPath = path.join(dirPath, entry.name);
+      // const relativePath = path.join(basePath, entry.name);
 
       if (entry.isDirectory()) {
         dirs.push(entry);
@@ -82,6 +82,7 @@ function generateSidebar() {
         if (yearItems.length > 0) {
           blogItems.push({
             text: subdir.name,
+            collapsed: false,
             items: yearItems
           });
         }

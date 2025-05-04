@@ -22,7 +22,7 @@ hero:
       link: /blog/2025/4测试一下
     - theme: alt
       text: Record
-      link: /record/20241101川西之行
+      link: /record/20250502
     # - theme: alt
     #   text: Photo
     #   link: undefined
