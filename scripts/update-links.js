@@ -8,6 +8,10 @@ const __dirname = path.dirname(__filename);
 
 const basePath = path.join(__dirname, "../docs/src");
 const latestPosts = getLatestPosts(basePath);
+console.log("Latest blog:", latestPosts.blog);
+console.log("Latest record:", latestPosts.record);
+console.log('--------------------------------');
+
 
 // 更新首页文件
 const indexPath = path.resolve(__dirname, "../docs/src/index.md");
