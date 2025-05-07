@@ -4,6 +4,9 @@
 echo "🔄 更新首页最新文章链接..."
 node scripts/update-links.js
 
+# build
+node pnpm run docs:build
+
 # 获取当前日期
 CURRENT_DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
