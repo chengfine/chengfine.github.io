@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 import { nav } from "./nav";
 import { sidebar } from "./sidebar";
-import updateHomeLinks from "./plugins/updateHomeLinks";
+import updateHomeLinks from "./plugins/updateHomeLinks.mts";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
