@@ -27,10 +27,6 @@ export default () => {
         /link: \/record\/.*?\n/g,
         `link: ${latestPosts.record}\n`
       );
-      // content = content.replace(
-      //   /link: \/photo\/.*?\n/g,
-      //   `link: ${latestPosts.photo}\n`
-      // );
       console.log(content);
       
       // 写回文件
