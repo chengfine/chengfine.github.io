@@ -65,17 +65,16 @@ const indexPath = path.resolve(__dirname, "../docs/src/index.md");
 console.log("Index file path:", indexPath);
 console.log("Index file exists:", fs.existsSync(indexPath));
 
-let content = fs.readFileSync(indexPath, "utf-8");
+const content = fs.readFileSync(indexPath, "utf-8");
 console.log("Original content:", content);
 
 // 更新博客链接
-content = content.replace(/link: \/blog\/.*/, `link: ${latestBlog}`);
+const updatedContent = content
+  .replace(/link: \/blog\/.*/, `link: ${latestBlog}`)
+  .replace(/link: \/record\/.*/, `link: ${latestRecord}`);
 
-// 更新记录链接
-content = content.replace(/link: \/record\/.*/, `link: ${latestRecord}`);
-
-console.log("Updated content:", content);
-fs.writeFileSync(indexPath, content);
+console.log("Updated content:", updatedContent);
+fs.writeFileSync(indexPath, updatedContent);
 
 console.log("Updated latest links in index.md:");
 console.log("Latest blog:", latestBlog);

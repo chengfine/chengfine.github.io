@@ -16,7 +16,7 @@ export default () => {
       
       // 读取首页内容
       const indexPath = path.join(basePath, 'index.md');
-      let content = fs.readFileSync(indexPath, 'utf-8');
+      let content = fs.readFile(indexPath, 'utf-8');
       
       // 更新链接
       content = content.replace(
@@ -34,7 +34,7 @@ export default () => {
       console.log(content);
       
       // 写回文件
-      fs.writeFileSync(indexPath, content);
+      fs.writeFile(indexPath, content);
     }
   };
 }; 
