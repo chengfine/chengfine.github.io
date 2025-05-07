@@ -1,6 +1,7 @@
 import { defineConfig } from "vitepress";
 import { nav } from "./nav";
 import { sidebar } from "./sidebar";
+import updateHomeLinks from "./plugins/updateHomeLinks";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -26,5 +27,9 @@ export default defineConfig({
       message: "Released under the MIT License.",
       copyright: "Copyright © 2025-present CHENG",
     },
+  },
+
+  vite: {
+    plugins: [updateHomeLinks()]
   }
 });

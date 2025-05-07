@@ -19,10 +19,10 @@ hero:
   actions:
     - theme: brand
       text: Blog
-      link: /blog/2025/4测试一下
+      link: /blog/2025/5.测试
     - theme: alt
       text: Record
-      link: /record/20250502
+      link: /record/20250507六个月复查
     # - theme: alt
     #   text: Photo
     #   link: undefined
