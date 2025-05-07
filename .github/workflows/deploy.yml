@@ -37,6 +37,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm docs:build
+        # 睡3秒
+        timeout-minutes: 10
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

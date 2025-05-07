@@ -10,7 +10,6 @@ export default () => {
   return {
     name: 'update-home-links',
     async buildStart() {
-      console.log('update-home-links');
       const basePath = path.join(__dirname, '../../src');
       const latestPosts = getLatestPosts(basePath);
       
