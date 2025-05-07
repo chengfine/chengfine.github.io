@@ -35,6 +35,8 @@ jobs:
           version: 8
       - name: Install dependencies
         run: pnpm install
+      - name: Update latest links
+        run: node scripts/update-links.js
       - name: Build
         run: pnpm docs:build
       - name: Upload artifact

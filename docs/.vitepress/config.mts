@@ -1,7 +1,6 @@
 import { defineConfig } from "vitepress";
 import { nav } from "./nav";
 import { sidebar } from "./sidebar";
-import updateHomeLinks from "./plugins/updateHomeLinks";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -21,18 +20,11 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav,
-
     sidebar,
-
     socialLinks: [{ icon: "github", link: "https://github.com/chengfine" }],
-
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2025-present CHENG",
     },
-  },
-
-  vite: {
-    plugins: [updateHomeLinks()]
   }
 });
