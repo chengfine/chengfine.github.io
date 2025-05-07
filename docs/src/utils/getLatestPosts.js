@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,20 +14,20 @@ function getLatestFile(dirPath) {
   try {
     const files = fs.readdirSync(dirPath);
     if (files.length === 0) return null;
-    
+
     // 获取所有文件的完整路径和创建时间
-    const filesWithTime = files.map(file => {
+    const filesWithTime = files.map((file) => {
       const filePath = path.join(dirPath, file);
       const stats = fs.statSync(filePath);
       return {
         path: file,
-        ctime: stats.birthtime
+        ctime: stats.birthtime,
       };
     });
 
     // 按创建时间排序，最新的在前
     filesWithTime.sort((a, b) => b.ctime - a.ctime);
-    
+
     return filesWithTime[0].path;
   } catch (error) {
     console.error(`Error reading directory ${dirPath}:`, error);
@@ -41,9 +41,10 @@ function getLatestFile(dirPath) {
  * @returns {Object} 包含各分类最新文章的对象
  */
 export function getLatestPosts(basePath) {
-  const blogPath = path.join(basePath, 'blog');
-  const recordPath = path.join(basePath, 'record');
-  // const photoPath = path.join(basePath, 'photo');
+  const blogPath = path.join(basePath, "blog");
+  const recordPath = path.join(basePath, "record");
+  console.log("getLatestPosts 46", blogPath, recordPath);
+  console.log("getLatestPosts 47", fs.readdirSync(blogPath));
 
   // 获取博客最新年份
   const blogYears = fs.readdirSync(blogPath);
@@ -52,8 +53,9 @@ export function getLatestPosts(basePath) {
   const latestBlog = getLatestFile(blogPathInYear);
 
   return {
-    blog: latestBlog ? `/blog/${latestBlogYear}/${latestBlog.replace('.md', '')}` : '/blog/',
-    record: `/record/${getLatestFile(recordPath)?.replace('.md', '') || ''}`,
-    // photo: `/photo/${getLatestFile(photoPath)?.replace('.md', '') || ''}`
+    blog: latestBlog
+      ? `/blog/${latestBlogYear}/${latestBlog.replace(".md", "")}`
+      : "/blog/",
+    record: `/record/${getLatestFile(recordPath)?.replace(".md", "") || ""}`,
   };
-} 
+}

@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 export default () => {
   return {
     name: "update-home-links",
-    buildStart() {
+    async buildStart() {
       const basePath = path.join(__dirname, "../../src");
       const latestPosts = getLatestPosts(basePath);
 
