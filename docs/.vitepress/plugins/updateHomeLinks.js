@@ -27,7 +27,7 @@ export default () => {
         /link: \/record\/.*?\n/g,
         `link: ${latestPosts.record}\n`
       );
-      console.log(content);
+      console.log('update-home-links 30',content);
       
       // 写回文件
       fs.writeFileSync(indexPath, content);
