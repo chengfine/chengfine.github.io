@@ -51,7 +51,14 @@ export function getLatestPosts(basePath) {
   const latestBlogYear = blogYears.sort().reverse()[0];
   const blogPathInYear = path.join(blogPath, latestBlogYear);
   const latestBlog = getLatestFile(blogPathInYear);
-
+  console.log(
+    "getLatestPosts 54",
+    `/blog/${latestBlogYear}/${latestBlog.replace(".md", "")}`
+  );
+  console.log(
+    "getLatestPosts 55",
+    `/record/${getLatestFile(recordPath)?.replace(".md", "") || ""}`
+  );
   return {
     blog: latestBlog
       ? `/blog/${latestBlogYear}/${latestBlog.replace(".md", "")}`
