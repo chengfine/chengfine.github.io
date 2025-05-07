@@ -86,7 +86,7 @@ function generateSidebar() {
         if (yearItems.length > 0) {
           blogItems.push({
             text: subdir.name,
-            collapsed: false,
+            collapsed: true,
             items: yearItems
           });
         }
