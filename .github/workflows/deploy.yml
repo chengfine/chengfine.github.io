@@ -33,16 +33,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      # - name: Install dependencies
-      #   run: pnpm install
-      # 间隔 3秒
-      - name: Wait for 3 seconds
-        run: sleep 3
+      - name: Install dependencies
+        run: pnpm install
       - name: Update latest links
+        working-directory: ${{ github.workspace }}
         run: node scripts/update-links.js
-      # 间隔 3秒
-      - name: Wait for 3 seconds
-        run: sleep 3
       - name: Build
         run: pnpm docs:build
       - name: Upload artifact
