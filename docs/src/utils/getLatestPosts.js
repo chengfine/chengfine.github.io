@@ -15,18 +15,18 @@ function getLatestFile(dirPath) {
     const files = fs.readdirSync(dirPath);
     if (files.length === 0) return null;
 
-    // 获取所有文件的完整路径和创建时间
+    // 获取所有文件的完整路径和修改时间
     const filesWithTime = files.map((file) => {
       const filePath = path.join(dirPath, file);
       const stats = fs.statSync(filePath);
       return {
         path: file,
-        ctime: stats.birthtime,
+        mtime: stats.mtime.getTime(), // 使用时间戳进行比较
       };
     });
 
-    // 按创建时间排序，最新的在前
-    filesWithTime.sort((a, b) => b.ctime - a.ctime);
+    // 按修改时间排序，最新的在前
+    filesWithTime.sort((a, b) => b.mtime - a.mtime);
 
     return filesWithTime[0].path;
   } catch (error) {
@@ -41,19 +41,48 @@ function getLatestFile(dirPath) {
  * @returns {Object} 包含各分类最新文章的对象
  */
 export function getLatestPosts(basePath) {
-  const blogPath = path.join(basePath, "blog");
-  const recordPath = path.join(basePath, "record");
+  try {
+    const blogPath = path.join(basePath, "blog");
+    const recordPath = path.join(basePath, "record");
 
-  // 获取博客最新年份
-  const blogYears = fs.readdirSync(blogPath);
-  const latestBlogYear = blogYears.sort().reverse()[0];
-  const blogPathInYear = path.join(blogPath, latestBlogYear);
-  const latestBlog = getLatestFile(blogPathInYear);
+    // 检查目录是否存在
+    if (!fs.existsSync(blogPath) || !fs.existsSync(recordPath)) {
+      return {
+        blog: '/blog/',
+        record: '/record/'
+      };
+    }
 
-  return {
-    blog: latestBlog
-      ? path.posix.join('/blog', latestBlogYear, latestBlog.replace('.md', ''))
-      : '/blog/',
-    record: path.posix.join('/record', getLatestFile(recordPath)?.replace('.md', '') || '')
-  };
+    // 获取博客最新年份
+    const blogYears = fs.readdirSync(blogPath)
+      .filter(year => fs.statSync(path.join(blogPath, year)).isDirectory())
+      .sort((a, b) => b.localeCompare(a));
+
+    if (blogYears.length === 0) {
+      return {
+        blog: '/blog/',
+        record: '/record/'
+      };
+    }
+
+    const latestBlogYear = blogYears[0];
+    const blogPathInYear = path.join(blogPath, latestBlogYear);
+    const latestBlog = getLatestFile(blogPathInYear);
+    const latestRecord = getLatestFile(recordPath);
+
+    return {
+      blog: latestBlog
+        ? path.posix.join('/blog', latestBlogYear, latestBlog.replace('.md', ''))
+        : '/blog/',
+      record: latestRecord
+        ? path.posix.join('/record', latestRecord.replace('.md', ''))
+        : '/record/'
+    };
+  } catch (error) {
+    console.error('Error getting latest posts:', error);
+    return {
+      blog: '/blog/',
+      record: '/record/'
+    };
+  }
 }

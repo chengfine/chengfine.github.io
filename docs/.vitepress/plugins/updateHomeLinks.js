@@ -13,7 +13,6 @@ export default () => {
       try {
         // 使用 path.join 确保跨平台路径兼容性
         const basePath = path.join(__dirname, "../../src");
-        console.log('Base path:', basePath);
 
         // 检查基础路径是否存在
         if (!fs.existsSync(basePath)) {
@@ -22,11 +21,9 @@ export default () => {
         }
 
         const latestPosts = getLatestPosts(basePath);
-        console.log('Latest posts:', latestPosts);
 
         // 读取首页内容
         const indexPath = path.join(basePath, "index.md");
-        console.log('Index path:', indexPath);
 
         if (!fs.existsSync(indexPath)) {
           console.error('Index file not found:', indexPath);
@@ -34,21 +31,17 @@ export default () => {
         }
 
         let content = fs.readFileSync(indexPath, "utf-8");
-        console.log('Original content:', content);
 
         // 更新链接，使用 path.posix.join 确保生成正斜杠的 URL 路径
+        // 使用正则表达式确保只替换匹配的行
         const updatedContent = content
-          .replace(/link: \/blog\/.*?\n/g, `link: ${latestPosts.blog}\n`)
-          .replace(/link: \/record\/.*?\n/g, `link: ${latestPosts.record}\n`);
+          .replace(/^link: \/blog\/.*$/m, `link: ${latestPosts.blog}`)
+          .replace(/^link: \/record\/.*$/m, `link: ${latestPosts.record}`);
 
-        console.log('Updated content:', updatedContent);
-
-        // 写回文件
+        // 写回文件，使用 UTF-8 编码
         fs.writeFileSync(indexPath, updatedContent, 'utf-8');
-        console.log('Successfully updated index.md');
       } catch (error) {
         console.error('Error updating home links:', error);
-        // 重新抛出错误，让构建过程知道发生了错误
         throw error;
       }
     },
