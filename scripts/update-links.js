@@ -28,8 +28,8 @@ for (const year of blogYears) {
       if (post.endsWith(".md")) {
         const postPath = path.join(yearDir, post);
         const stats = fs.statSync(postPath);
-        if (!latestBlogDate || stats.mtime > new Date(latestBlogDate)) {
-          latestBlogDate = stats.mtime.toISOString();
+        if (!latestBlogDate || stats.birthtime > new Date(latestBlogDate)) {
+          latestBlogDate = stats.birthtime.toISOString();
           latestBlog = `/blog/${year}/${post.replace(".md", "")}`;
           console.log("Found newer blog post:", latestBlog);
         }
@@ -52,8 +52,8 @@ for (const record of records) {
   if (record.endsWith(".md")) {
     const recordPath = path.join(recordDir, record);
     const stats = fs.statSync(recordPath);
-    if (!latestRecordDate || stats.mtime > new Date(latestRecordDate)) {
-      latestRecordDate = stats.mtime.toISOString();
+    if (!latestRecordDate || stats.birthtime > new Date(latestRecordDate)) {
+      latestRecordDate = stats.birthtime.toISOString();
       latestRecord = `/record/${record.replace(".md", "")}`;
       console.log("Found newer record:", latestRecord);
     }
