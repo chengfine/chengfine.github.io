@@ -14,13 +14,13 @@ const indexPath = path.resolve(__dirname, "../docs/src/index.md");
 let content = fs.readFileSync(indexPath, "utf-8");
 
 // 更新博客链接
-content = content.replace(/link: \/blog\/.*/, `link: ${latestBlog}`);
+content = content.replace(/link: \/blog\/.*/, `link: ${latestPosts.blog}`);
 
 // 更新记录链接
-content = content.replace(/link: \/record\/.*/, `link: ${latestRecord}`);
+content = content.replace(/link: \/record\/.*/, `link: ${latestPosts.record}`);
 
 fs.writeFileSync(indexPath, content);
 
 console.log("Updated latest links in index.md:");
-console.log("Latest blog:", latestBlog);
-console.log("Latest record:", latestRecord);
+console.log("Latest blog:", latestPosts.blog);
+console.log("Latest record:", latestPosts.record);
