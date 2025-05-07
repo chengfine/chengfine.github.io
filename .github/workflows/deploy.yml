@@ -36,8 +36,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Update latest links
-        working-directory: ${{ github.workspace }}
-        run: node scripts/update-links.js
+        # working-directory: ${{ github.workspace }}
+        # run: node scripts/update-links.js
         
       - name: Build
         run: pnpm docs:build
