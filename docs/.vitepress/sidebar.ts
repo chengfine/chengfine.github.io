@@ -3,15 +3,15 @@ import path from 'path';
 
 function generateSidebar() {
   const srcPath = path.join(__dirname, '../src');
-  const sidebar = {};
+  const sidebar: Record<string, any[]> = {};
 
-  function processDirectory(dirPath, basePath = '') {
-    const items = [];
+  function processDirectory(dirPath: string, basePath = '') {
+    const items: any[] = [];
     const entries = fs.readdirSync(dirPath, { withFileTypes: true });
 
     // 先收集所有文件
-    const files = [];
-    const dirs = [];
+    const files: fs.Dirent[] = [];
+    const dirs: fs.Dirent[] = [];
 
     for (const entry of entries) {
       // const fullPath = path.join(dirPath, entry.name);
@@ -75,7 +75,11 @@ function generateSidebar() {
         }))
         .sort((a, b) => b.name.localeCompare(a.name));
       
-      const blogItems = [];
+      const blogItems: Array<{
+        text: string;
+        collapsed: boolean;
+        items: any[];
+      }> = [];
       
       for (const subdir of blogSubdirs) {
         const yearItems = processDirectory(subdir.path);
