@@ -103,7 +103,7 @@ function generateSidebar() {
       }
     }
   });
-
+  console.log(sidebar);
   return sidebar;
 }
 
