@@ -19,7 +19,7 @@ hero:
   actions:
     - theme: brand
       text: Blog
-      link: /blog/2025/5.测试
+      link: /blog/2025/6测试2
     - theme: alt
       text: Record
       link: /record/20250507六个月复查
