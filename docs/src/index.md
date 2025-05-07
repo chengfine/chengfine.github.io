@@ -23,9 +23,6 @@ hero:
     - theme: alt
       text: Record
       link: /record/20250507六个月复查
-    # - theme: alt
-    #   text: Photo
-    #   link: undefined
 
 # features:
 #   - title: 博客
