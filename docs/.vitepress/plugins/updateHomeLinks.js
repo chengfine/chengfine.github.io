@@ -10,6 +10,7 @@ export default () => {
   return {
     name: 'update-home-links',
     async buildStart() {
+      console.log('update-home-links');
       const basePath = path.join(__dirname, '../../src');
       const latestPosts = getLatestPosts(basePath);
       
@@ -26,10 +27,11 @@ export default () => {
         /link: \/record\/.*?\n/g,
         `link: ${latestPosts.record}\n`
       );
-      content = content.replace(
-        /link: \/photo\/.*?\n/g,
-        `link: ${latestPosts.photo}\n`
-      );
+      // content = content.replace(
+      //   /link: \/photo\/.*?\n/g,
+      //   `link: ${latestPosts.photo}\n`
+      // );
+      console.log(content);
       
       // 写回文件
       fs.writeFileSync(indexPath, content);
