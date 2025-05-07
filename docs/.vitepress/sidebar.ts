@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function generateSidebar() {
   const srcPath = path.join(__dirname, '../src');
@@ -14,9 +18,6 @@ function generateSidebar() {
     const dirs: fs.Dirent[] = [];
 
     for (const entry of entries) {
-      // const fullPath = path.join(dirPath, entry.name);
-      // const relativePath = path.join(basePath, entry.name);
-
       if (entry.isDirectory()) {
         dirs.push(entry);
       } else if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'index.md') {
@@ -34,7 +35,8 @@ function generateSidebar() {
       const title = titleMatch ? titleMatch[1] : entry.name.replace('.md', '');
 
       const relativeToSrc = path.relative(srcPath, dirPath);
-      const fullLinkPath = path.join(relativeToSrc, entry.name.replace('.md', '')).replace(/\\/g, '/');
+      // 使用 path.posix.join 确保生成正斜杠的 URL 路径
+      const fullLinkPath = path.posix.join(relativeToSrc, entry.name.replace('.md', ''));
 
       items.push({
         text: title,
@@ -103,7 +105,7 @@ function generateSidebar() {
       }
     }
   });
-  console.log(sidebar);
+
   return sidebar;
 }
 

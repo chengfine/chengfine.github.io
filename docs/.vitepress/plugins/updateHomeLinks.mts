@@ -33,8 +33,8 @@ export default function updateHomeLinks(): Plugin {
               if (post.endsWith('.md')) {
                 const postPath = path.join(yearDir, post)
                 const stats = fs.statSync(postPath)
-                if (!latestBlogDate || stats.mtime > new Date(latestBlogDate)) {
-                  latestBlogDate = stats.mtime.toISOString()
+                if (!latestBlogDate || stats.birthtime > new Date(latestBlogDate)) {
+                  latestBlogDate = stats.birthtime.toISOString()
                   // 使用 path.posix.join 确保生成正斜杠的 URL 路径
                   latestBlog = path.posix.join('/blog', year, post.replace('.md', ''))
                 }
@@ -61,8 +61,8 @@ export default function updateHomeLinks(): Plugin {
           if (record.endsWith('.md')) {
             const recordPath = path.join(recordDir, record)
             const stats = fs.statSync(recordPath)
-            if (!latestRecordDate || stats.mtime > new Date(latestRecordDate)) {
-              latestRecordDate = stats.mtime.toISOString()
+            if (!latestRecordDate || stats.birthtime > new Date(latestRecordDate)) {
+              latestRecordDate = stats.birthtime.toISOString()
               // 使用 path.posix.join 确保生成正斜杠的 URL 路径
               latestRecord = path.posix.join('/record', record.replace('.md', ''))
             }

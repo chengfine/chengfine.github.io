@@ -11,6 +11,9 @@ if [ $# -gt 0 ]; then
   COMMIT_MSG="$1 [${CURRENT_DATE}]"
 fi
 
+# 确保脚本在错误时退出
+set -e
+
 # 添加所有更改
 git add .
 
@@ -26,4 +29,5 @@ if [ $? -eq 0 ]; then
   echo "🔄 GitHub Actions 将自动部署到 GitHub Pages"
 else
   echo "❌ 推送失败，请检查错误信息"
+  exit 1
 fi 

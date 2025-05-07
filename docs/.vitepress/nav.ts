@@ -1,7 +1,11 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-function getLatestPost(category) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+function getLatestPost(category: string) {
   const categoryPath = path.join(__dirname, `../src/${category}`);
   
   // 检查目录是否存在
@@ -35,7 +39,8 @@ function getLatestPost(category) {
     if (posts.length === 0) return '/blog/';
 
     const latestPost = posts[0].replace('.md', '');
-    return `/${category}/${latestYear}/${latestPost}`;
+    // 使用 path.posix.join 确保生成正斜杠的 URL 路径
+    return path.posix.join('/', category, latestYear, latestPost);
   } else {
     // 处理其他目录（record, photo 等）
     const posts = entries
@@ -46,7 +51,8 @@ function getLatestPost(category) {
     if (posts.length === 0) return `/${category}/`;
 
     const latestPost = posts[0].replace('.md', '');
-    return `/${category}/${latestPost}`;
+    // 使用 path.posix.join 确保生成正斜杠的 URL 路径
+    return path.posix.join('/', category, latestPost);
   }
 }
 
