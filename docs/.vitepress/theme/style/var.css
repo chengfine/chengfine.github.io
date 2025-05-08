@@ -1,6 +1,6 @@
 /* var.css */
 :root {
-    --vp-c-brand-1: #3451b2; /* #18794e */
+    --vp-c-brand-1: #18794e; /* #18794e */
     --vp-c-brand-2: #299764;
     --vp-c-brand-3: #30a46c;
   }
@@ -40,4 +40,10 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .VPSidebarItem.is-active .text{
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    transition: font-size 0.2s ease-in-out;
   }

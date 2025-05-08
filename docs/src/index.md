@@ -13,8 +13,8 @@ hero:
   tagline: 一个前端开发，偶尔记录
 
 
-  # image:
-  #   src: /assets/images/image.png
+  image:
+    src: /images/image.png
 
   actions:
     - theme: brand
@@ -30,4 +30,7 @@ hero:
 #   - title: 关于我
 #     details: 关于我
 ---
+
+本站总访问量 <span id="busuanzi_value_site_pv" /> 次
+本站访客数 <span id="busuanzi_value_site_uv" /> 人次
 

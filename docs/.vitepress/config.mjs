@@ -5,7 +5,11 @@ import updateHomeLinks from "./plugins/updateHomeLinks";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/',
+  //fav图标
+  head: [
+    ['link',{ rel: 'icon', href: '/images/image.png'}],
+  ],
+  base: "/",
   title: "CHENG的博客",
   description: "cheng-github-blog",
   cleanUrls: true,
@@ -19,10 +23,24 @@ export default defineConfig({
   },
 
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav,
     sidebar,
     socialLinks: [{ icon: "github", link: "https://github.com/chengfine" }],
+    darkModeSwitchLabel: "主题",
+    lightModeSwitchTitle: "切换到浅色模式",
+    darkModeSwitchTitle: "切换到深色模式",
+    // siteTitle: 'Hello World',
+    // siteTitle: false, //标题隐藏
+    logo: '/images/logo-light.svg',
+    //开启本地搜索
+    search: {
+      provider: "local"
+    },
+    // 修改文档页脚的文字
+    docFooter: {
+      prev: "上一页",
+      next: "下一页"
+    },
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2025-present CHENG",
@@ -30,6 +48,10 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [updateHomeLinks()]
+    plugins: [updateHomeLinks()],
+    server: {
+      port: 3000, // 设置端口为3000
+      open: true  // 自动打开浏览器
+    }
   }
 });

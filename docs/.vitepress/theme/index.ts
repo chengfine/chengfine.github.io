@@ -13,11 +13,6 @@ let homePageStyle: HTMLStyleElement | undefined
 
 export default {
   extends: DefaultTheme,
-//   enhanceApp({app}) { 
-//     // 注册全局组件
-//     app.component('DataPanel' , DataPanel)
-//   }
-
   enhanceApp({ app , router }) {
     if (inBrowser) {
       router.onAfterRouteChanged = () => {
