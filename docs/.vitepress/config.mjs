@@ -7,7 +7,7 @@ import updateHomeLinks from "./plugins/updateHomeLinks";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   //fav图标
-  head: [["link", { rel: "icon", href: "/images/image.png" }]],
+  head: [["link", { rel: "icon", href: "/images/logo-light.svg" }]],
   base: "/",
   title: "CHENG的博客",
   description: "cheng-github-blog",
