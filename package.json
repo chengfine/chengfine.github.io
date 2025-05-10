@@ -4,6 +4,8 @@
     "@types/node": "^22.15.3",
     "@vitejs/plugin-vue": "^5.2.1",
     "busuanzi.pure.js": "^1.0.3",
+    "medium-zoom": "^1.1.0",
+    "nprogress-v2": "^1.1.10",
     "unplugin-auto-import": "^0.19.0",
     "unplugin-vue-components": "^0.28.0",
     "vitepress": "^1.6.3"
