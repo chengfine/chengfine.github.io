@@ -12,18 +12,16 @@ hero:
   # 内容介绍
   tagline: 一个前端开发，偶尔记录
 
-
   image:
     src: /images/image.png
 
-  actions:
-    - theme: brand
-      text: Blog
-      link: /blog/2025/7最终测试版
-    - theme: alt
-      text: Record
-      link: /record/20250508测试
-
+  # actions:
+  #   - theme: brand
+  #     text: Blog
+  #     link: /blog/2025/7最终测试版
+  #   - theme: alt
+  #     text: Record
+  #     link: /record/20250508测试
 # features:
 #   - title: 博客
 #     details: 博客
@@ -31,6 +29,18 @@ hero:
 #     details: 关于我
 ---
 
+<script setup>
+import { onMounted, ref } from 'vue'
+import { useRouter, useData } from 'vitepress'
+
+const { theme } = useData()
+const router = useRouter()
+onMounted(() => {
+  // theme.value.nav 包含了导航配置
+  const latestPost = theme.value.nav[0].link
+  router.go(latestPost)
+})
+</script>
+
 <!-- 本站总访问量 <span id="busuanzi_value_site_pv" /> 次
 本站访客数 <span id="busuanzi_value_site_uv" /> 人次 -->
-
