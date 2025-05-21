@@ -12,12 +12,15 @@ import mediumZoom from "medium-zoom";
 import { onMounted, watch, nextTick } from "vue";
 import { useRoute } from "vitepress";
 
+import xgplayer from "./components/xgplayer.vue"
+
 // 彩虹背景动画样式
 let homePageStyle: HTMLStyleElement | undefined;
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app, router }) {
+    app.component('xgplayer', xgplayer)
     if (inBrowser) {
       NProgress.configure({ showSpinner: false });
       router.onBeforeRouteChange = () => {
