@@ -70,6 +70,11 @@ export const nav = [
     link: getLatestPost('record'),
     activeMatch: '^/record/'
   },
+  { 
+    text: 'Fitness', 
+    link: getLatestPost('fitness'),
+    activeMatch: '^/fitness/'
+  },
   // { 
   //   text: '相册', 
   //   link: getLatestPost('photo'),
