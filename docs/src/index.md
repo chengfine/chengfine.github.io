@@ -38,6 +38,7 @@ const router = useRouter()
 onMounted(() => {
   // theme.value.nav 包含了导航配置
   const latestPost = theme.value.nav[0].link
+  console.log(latestPost)
   router.go(latestPost)
 })
 </script>

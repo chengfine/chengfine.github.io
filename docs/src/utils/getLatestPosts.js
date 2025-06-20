@@ -53,26 +53,27 @@ export function getLatestPosts(basePath) {
       };
     }
 
-    // 获取博客最新年份
-    const blogYears = fs.readdirSync(blogPath)
-      .filter(year => fs.statSync(path.join(blogPath, year)).isDirectory())
-      .sort((a, b) => b.localeCompare(a));
+    // // 获取博客最新年份
+    // const blogYears = fs.readdirSync(blogPath)
+    //   .filter(year => fs.statSync(path.join(blogPath, year)).isDirectory())
+    //   .sort((a, b) => b.localeCompare(a));
 
-    if (blogYears.length === 0) {
-      return {
-        blog: '/blog/',
-        record: '/record/'
-      };
-    }
+    // if (blogYears.length === 0) {
+    //   return {
+    //     blog: '/blog/',
+    //     record: '/record/'
+    //   };
+    // }
 
-    const latestBlogYear = blogYears[0];
-    const blogPathInYear = path.join(blogPath, latestBlogYear);
-    const latestBlog = getLatestFile(blogPathInYear);
+    // const latestBlogYear = blogYears[0];
+    // const blogPathInYear = path.join(blogPath, latestBlogYear);
+    const latestBlog = getLatestFile(blogPath);
+    console.log('latestBlog', latestBlog)
     const latestRecord = getLatestFile(recordPath);
 
     return {
       blog: latestBlog
-        ? path.posix.join('/blog', latestBlogYear, latestBlog.replace('.md', ''))
+        ? path.posix.join('/blog', latestBlog.replace('.md', ''))
         : '/blog/',
       record: latestRecord
         ? path.posix.join('/record', latestRecord.replace('.md', ''))

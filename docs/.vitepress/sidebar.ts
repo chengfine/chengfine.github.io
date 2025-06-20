@@ -67,7 +67,7 @@ function generateSidebar() {
     directories.forEach(dir => {
       const dirPath = path.join(srcPath, dir);
       
-      if (dir === 'blog') {
+      if (dir === 'blog' && false) {
         // 特殊处理 blog 目录，按年份降序排列
         const blogSubdirs = fs.readdirSync(dirPath, { withFileTypes: true })
           .filter(dirent => dirent.isDirectory())
